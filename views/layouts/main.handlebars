@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Scraping With Mongoose</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<style>
+		body {
+			background-color: #f8f8ff
+		}
+
+		#querybar {
+			padding: 25px;
+		}
+
+		#item {
+			padding: 25px;
+		}
+
+		#send {
+			margin-top: 10px;
+			margin-left: 15px;
+			padding: 8px;
+		}
+
+
+		#wrapper {
+			width: 960px;
+			margin-left: auto;
+			margin-right: auto;
+			padding: 0px;
+			
+		}
+
+		#articles {
+			display: inline-block;
+			overflow: auto;
+			width: 60%;
+			height: 700px;
+		}
+
+		#bodyinput {
+			margin-top: 10px;
+			margin-bottom: 10px;
+			height: 150px;
+		}
+
+		/* jumbotron color #e9ecef */
+		#notes p {
+			margin-top: 5px;
+		}
+
+		#notes {
+			float: right;
+			width: 30%;
+
+			padding: 10px;
+		}
+
+		textarea,
+		input {
+			display: block;
+			width: 100%;
+			background-color: #dfdfe5;
+		}
+
+		input {
+			height: 36px;
+			font-size: 24px;
+		}
+
+		textarea {
+			height: 200px;
+			font-size: 18px;
+		}
+
+		.jumbotron {
+			margin-top: 10px;
+		}
+
+		#wrapper h1 {
+			margin: 10px;
+		}
+
+		.comment {
+			padding: 15px;
+			border: 2px solid #1C6EA4;
+			border-radius: 15px;
+			margin-bottom: 6px;
+		}
+
+		.new{
+			padding: 15px;
+		}
+
+		.cTitle {
+			font-size: 25px;
+		}
+	</style>
+</head>
+
+<body>
+	{{{body}}}
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script>
+		
+		
+		$(document).on("click", "#send", function () {
+			let query = $("#item").val().toLowerCase();
+			if(query.includes(" ")){
+				query = query.split(" ")
+				query = query.join("-")
+			}
+				$.ajax({
+				method: "GET",
+				url: "/scrape/" + query,
+			})
+				// With that done
+				.then(function (data) {
+					// Log the response
+
+					window.location.reload();
+				
+				});
+		});
+
+		// When you click the savenote button
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+</body>
+
+</html>

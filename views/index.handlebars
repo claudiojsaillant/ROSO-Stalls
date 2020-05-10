@@ -1,0 +1,65 @@
+<nav class="navbar navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">News Flash</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="container">
+
+  <div class="jumbotron">
+    <h1 class="display-4 text-center">Hello, fellow seller/buyer!</h1>
+    <p class="lead text-center">This are the lastest hot stals available from the ROSO.</p>
+    <hr class="my-4">
+    <p class="text-center">We love to give The best. The lastest. The most interesting prices!</p>
+    <div class="text-center mx-auto"><a class="btn btn-primary btn-lg" href="#wrappertitle" role="button">Start Looking
+        now!</a></div>
+    <div id="querybar">
+      <input type="email" class="form-control" id="item" aria-describedby="emailHelp" placeholder="Enter item">
+      <button id="send" class="btn btn-danger">Search</button>
+    </div>
+    
+  </div>
+  
+  
+  
+  <div id="wrapper">
+    <h1 id="wrappertitle" class="text-center">Lastest Stall Scraper</h1>
+    <h2><i></i></h2>
+
+    <div id="articles">
+      {{#each article}}
+      <div class='jumbotron jumbotron-fluid new'>
+        <div class='container'>
+          <h5>
+            <p class="cTitle" data-id={{this._id}}>{{this.location}}
+            <p class="cTitle">{{this.name}}</p>
+            <p class="cTitle">Cheapest: {{this.cheapest}}</p>
+            </p>
+            <p>{{this.content}}<a href={{this.link}}>more</a></p>
+          </h5>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    <div id="notes"></div>
+  </div>
+</div>
