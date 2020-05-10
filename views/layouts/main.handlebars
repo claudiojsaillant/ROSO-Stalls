@@ -129,6 +129,26 @@
 				
 				});
 		});
+		$(document).on("click", ".item", function () {
+			query = $(this).attr("value");
+			if(query.includes(" ")){
+				query = query.split(" ")
+				query = query.join("-")
+			}
+			$.ajax({
+				method: "GET",
+				url: "/scrape/" + query,
+			})
+				// With that done
+				.then(function (data) {
+					// Log the response
+
+					window.location.reload();
+				
+				});
+
+		})
+		item
 
 		// When you click the savenote button
 	</script>

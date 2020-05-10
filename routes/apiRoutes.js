@@ -77,7 +77,8 @@ module.exports = function(app) {
                     includ = includ.join(" ");
                   }
                   console.log("FIXED QUERRY:--_>" + includ)
-                  if(item.title != "" && item.title.toLowerCase().includes(includ)){
+                  
+                  if(item.title != "" && item.title.toLowerCase().includes(includ)  || item.title != "" && (item.title === "+10% EXP Scroll" && includ === "10 exp scroll") || item.title != "" && (item.title === "+5% EXP Scroll" && includ === "5 exp scroll")){
                     let a = item.price
                     a = a.split("$")
                     a = a[1].split("(")
