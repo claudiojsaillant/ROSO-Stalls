@@ -20,6 +20,11 @@ module.exports = function(app) {
         let len = $(
           "#content > div.article_right > div > div > div.contentwrap > div > div > div.innerFormat > table > tbody > tr"
         ).length;
+
+        if(len === 0){
+          res.send("-1")
+        }
+
         $(
           "#content > div.article_right > div > div > div.contentwrap > div > div > div.innerFormat > table > tbody > tr"
         ).each(function(i, element) {

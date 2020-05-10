@@ -128,13 +128,17 @@
 				// With that done
 				.then(function (data) {
 					// Log the response
-
+					console.log("data")
+					if(data === "-1"){
+						alert("No stalls found")
+					}
+					
 					window.location.reload();
 				
 				});
 		});
 		$(document).on("click", ".item", function () {
-			query = $(this).attr("value");
+			let query = $(this).attr("value");
 			if(query.includes(" ")){
 				query = query.split(" ")
 				query = query.join("-")
@@ -146,7 +150,9 @@
 				// With that done
 				.then(function (data) {
 					// Log the response
-
+						if(data === "-1"){
+						alert("No stalls found")
+					}
 					window.location.reload();
 				
 				});
