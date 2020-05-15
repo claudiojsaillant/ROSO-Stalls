@@ -8,7 +8,7 @@
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<style>
 		body {
-			background-color: #f8f8ff
+			background-color: #f8f8ff;
 		}
 
 		#querybar {
@@ -102,6 +102,25 @@
 		.item {
 			margin: 3px;
 		}
+
+		.darkbody {
+		background-color: black;
+		color: white;
+		}
+
+		.darkjumbotron {
+		background-color:#696969;	
+		}
+
+		.darkbg-primary {
+			background-color: black!important;
+		}
+
+		.darkbtn-primary {
+    color: #fff;
+    background-color: black;
+    border-color: black;
+}
 	</style>
 </head>
 
@@ -113,7 +132,25 @@
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
 	<script>
-		
+		let setDark = () => {
+			$("body").toggleClass("darkbody");
+			$(".jumbotron").toggleClass("darkjumbotron");
+			$(".bg-primary").toggleClass("darkbg-primary");
+			$(".btn-primary").toggleClass("darkbtn-primary");
+		}
+		let valInLocal = localStorage.getItem("item");
+		console.log(valInLocal)
+		if (valInLocal === null) {
+			localStorage.setItem("item", "light")
+			}
+		else if(valInLocal === "dark"){
+			setDark();
+		}
+
+
+
+
+
 		
 		$(document).on("click", "#send", function () {
 			let query = $("#item").val().toLowerCase();
@@ -137,6 +174,7 @@
 				
 				});
 		});
+
 		$(document).on("click", ".item", function () {
 			let query = $(this).attr("value");
 			if(query.includes(" ")){
@@ -158,7 +196,29 @@
 				});
 
 		})
-		item
+
+		$(document).on("click", ".darkbtn", function () {
+			let currLocal = localStorage.getItem("item");
+			console.log(currLocal);
+			if(currLocal == "light"){
+			setDark();
+			localStorage.clear();
+			localStorage.setItem("item", "dark")
+			} else {
+			setDark();
+			localStorage.clear();
+			localStorage.setItem("item", "light")	
+			}
+			
+
+		})
+
+		
+	
+
+
+
+
 
 		// When you click the savenote button
 	</script>
