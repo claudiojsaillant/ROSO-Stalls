@@ -31,7 +31,7 @@
 			margin-left: auto;
 			margin-right: auto;
 			padding: 0px;
-			
+
 		}
 
 		#articles {
@@ -91,7 +91,7 @@
 			margin-bottom: 6px;
 		}
 
-		.new{
+		.new {
 			padding: 15px;
 		}
 
@@ -104,23 +104,23 @@
 		}
 
 		.darkbody {
-		background-color: black;
-		color: white;
+			background-color: black;
+			color: white;
 		}
 
 		.darkjumbotron {
-		background-color:#696969;	
+			background-color: #696969;
 		}
 
 		.darkbg-primary {
-			background-color: black!important;
+			background-color: black !important;
 		}
 
 		.darkbtn-primary {
-    color: #fff;
-    background-color: black;
-    border-color: black;
-}
+			color: #fff;
+			background-color: black;
+			border-color: black;
+		}
 	</style>
 </head>
 
@@ -142,8 +142,8 @@
 		console.log(valInLocal)
 		if (valInLocal === null) {
 			localStorage.setItem("item", "light")
-			}
-		else if(valInLocal === "dark"){
+		}
+		else if (valInLocal === "dark") {
 			setDark();
 		}
 
@@ -151,33 +151,11 @@
 
 
 
-		
+
 		$(document).on("click", "#send", function () {
 			let query = $("#item").val().toLowerCase();
-			if(query.includes(" ")){
-				query = query.split(" ")
-				query = query.join("-")
-			}
-				$.ajax({
-				method: "GET",
-				url: "/scrape/" + query,
-			})
-				// With that done
-				.then(function (data) {
-					// Log the response
-					console.log("data")
-					if(data === "-1"){
-						alert("No stalls found")
-					}
-					
-					window.location.reload();
-				
-				});
-		});
-
-		$(document).on("click", ".item", function () {
-			let query = $(this).attr("value");
-			if(query.includes(" ")){
+			alert("Searching.... for: " + query)
+			if (query.includes(" ")) {
 				query = query.split(" ")
 				query = query.join("-")
 			}
@@ -188,11 +166,40 @@
 				// With that done
 				.then(function (data) {
 					// Log the response
-						if(data === "-1"){
+					console.log("data")
+					if (data === "-1") {
 						alert("No stalls found")
-					}
+					} else {
+							alert("Found some stalls with: " + $("#item").val().toLowerCase())
+						}
+
 					window.location.reload();
-				
+
+				});
+		});
+
+		$(document).on("click", ".item", function () {
+			let query = $(this).attr("value");
+			const a =  $(this).text()
+			alert("Searching.... for: " + a)
+			if (query.includes(" ")) {
+				query = query.split(" ")
+				query = query.join("-")
+			}
+			$.ajax({
+				method: "GET",
+				url: "/scrape/" + query,
+			})
+				// With that done
+				.then(function (data) {
+					// Log the response
+					if (data === "-1") {
+						alert("No stalls found")
+					} else {
+							alert("Found some stalls with: " + a)
+						}
+					window.location.reload();
+
 				});
 
 		})
@@ -200,21 +207,53 @@
 		$(document).on("click", ".darkbtn", function () {
 			let currLocal = localStorage.getItem("item");
 			console.log(currLocal);
-			if(currLocal == "light"){
-			setDark();
-			localStorage.clear();
-			localStorage.setItem("item", "dark")
+			if (currLocal == "light") {
+				setDark();
+				localStorage.clear();
+				localStorage.setItem("item", "dark")
 			} else {
-			setDark();
-			localStorage.clear();
-			localStorage.setItem("item", "light")	
+				setDark();
+				localStorage.clear();
+				localStorage.setItem("item", "light")
 			}
-			
+
 
 		})
 
-		
-	
+		$(document).on("keydown", function (event) {
+			var inputValue = event.keyCode;
+			
+			if (inputValue == 13) {
+				let query = $("#item").val().toLowerCase();
+				alert("Searching.... for: " + query)
+				if (query.includes(" ")) {
+					query = query.split(" ")
+					query = query.join("-")
+				}
+				$.ajax({
+					method: "GET",
+					url: "/scrape/" + query,
+				})
+					// With that done
+					.then(function (data) {
+						// Log the response
+						console.log("data")
+						if (data === "-1") {
+							alert("No stalls found")
+						}  else {
+							alert("Found some stalls with: " + $("#item").val().toLowerCase())
+						}
+
+						window.location.reload();
+
+					});
+			}
+		});
+
+
+
+
+
 
 
 
